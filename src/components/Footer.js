@@ -11,8 +11,10 @@ const Footer = () => {
         </Link>
         <span className={styled.FText}>
           An interactive learning project from{" "}
-          <a className={styled.FLink} href="https://thinkster.io">Thinkster</a>. Code &amp; design
-          by Group 1.
+          <a className={styled.FLink} href="https://thinkster.io">
+            Thinkster
+          </a>
+          . Code &amp; design by Group 1.
         </span>
 
         <div className={styled.FNameMemBer}>
