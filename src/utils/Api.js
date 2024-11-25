@@ -19,7 +19,6 @@ export const loginUser = async (email, password) => {
                 "Content-Type": "application/json"
             },
         });
-
         if (response && response.data && response.data.user) {
             return response.data;
         } else {
