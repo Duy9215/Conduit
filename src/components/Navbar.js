@@ -50,7 +50,6 @@ const Navbar = ({ isProfile = false }) => {
             </Link>
           )}
         </div>
-
         <div className={styled.Nav}>
           <ul>
             {isLoggedIn ? (
