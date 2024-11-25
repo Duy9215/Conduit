@@ -1,0 +1,568 @@
+/* Navbar.module.css */
+:root {
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #f65282;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #FFC955;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-black: #000;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-gray-100: #f8f9fa;
+    --bs-gray-200: #e9ecef;
+    --bs-gray-300: #dee2e6;
+    --bs-gray-400: #ced4da;
+    --bs-gray-500: #adb5bd;
+    --bs-gray-600: #6c757d;
+    --bs-gray-700: #495057;
+    --bs-gray-800: #343a40;
+    --bs-gray-900: #212529;
+    --bs-primary: #0d6efd;
+    --bs-secondary: #6c757d;
+    --bs-success: #35c56c;
+    --bs-info: #0dcaf0;
+    --bs-warning: #FFC955;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #231d3c;
+    --bs-primary-rgb: 13, 110, 253;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success-rgb: 53, 197, 108;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-warning-rgb: 255, 201, 85;
+    --bs-danger-rgb: 220, 53, 69;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark-rgb: 35, 29, 60;
+    --bs-white-rgb: 255, 255, 255;
+    --bs-black-rgb: 0, 0, 0;
+    --bs-body-color-rgb: 33, 37, 41;
+    --bs-body-bg-rgb: 255, 255, 255;
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --bs-gradient: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+
+}
+
+.NavPro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    z-index: 10000000;
+    width: 100%;
+    background-color: transparent;
+    /* Đặt màu nền là trong suốt */
+}
+
+
+/* CSS chung */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.ItemContent {
+    margin-bottom: 10px;
+}
+
+.RightCard,
+.LeftCard {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 4px;
+
+}
+
+.BoxUser {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.UserHeaderBg {
+    margin: 0px auto;
+    text-align: center;
+}
+
+.UserBG {
+    width: 1500px;
+    margin: 0px auto;
+}
+
+.UserHeaderBg img {
+    margin: 0px auto;
+    position: relative;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0% 0% 10px 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.UserHeaderBg button {
+    position: absolute;
+    background-color: var(--bs-orange);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    bottom: 35em;
+    right: 250px;
+}
+
+.buttonSetting {
+    background-color: var(--bs-orange);
+    border: none;
+}
+
+.UserHeaderBg button:hover {
+    background-color: var(--bs-blue);
+}
+
+.UserImg {
+    background-color: aliceblue;
+    position: absolute;
+    bottom: 27em;
+    left: 250px;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.UserImg img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50% !important;
+}
+
+.UserContent {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.LeftContent {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.RightContent {
+    width: 60%;
+
+}
+
+
+.ContentImg img {
+    width: 250px;
+    height: 150px;
+    border-radius: 5px !important;
+    margin-right: 20px;
+}
+
+.ItemContent {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 2px solid #00080080;
+}
+
+.BoxContent {
+    display: flex;
+    margin: 0px auto;
+    width: 1500px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.ContentInfor {
+    overflow: auto;
+
+}
+
+.ContentInfor h4 {
+    width: 850px;
+}
+
+/* Điện thoại di động */
+@media screen and (max-width: 767px) {
+
+    /* Các luật CSS dành cho điện thoại di động ở đây */
+    body {
+        font-size: 14px;
+    }
+
+    .BoxUser {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .UserHeaderBg {
+        margin: 0px auto;
+        text-align: center;
+    }
+
+    .UserBG {
+        width: 100%;
+        margin: 0px auto;
+    }
+
+    .UserHeaderBg img {
+        margin: 0px auto;
+        position: relative;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 0% 0% 10px 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .UserHeaderBg button {
+        position: absolute;
+        background-color: var(--bs-orange);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        bottom: 49em;
+        right: 20px;
+    }
+
+    .UserHeaderBg button:hover {
+        background-color: var(--bs-blue);
+    }
+
+    .UserImg {
+        background-color: aliceblue;
+        position: absolute;
+        bottom: 40em;
+        left: 20px;
+        padding: 15px;
+        border-radius: 50%;
+    }
+
+    .UserImg img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50% !important;
+    }
+
+    .UserContent {
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+
+    .LeftContent {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .RightContent {
+        width: 100%;
+
+    }
+
+
+    .ContentImg img {
+        width: 250px;
+        height: 150px;
+        border-radius: 5px !important;
+        margin-right: 20px;
+    }
+
+    .ItemContent {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 2px solid #00080080;
+    }
+
+    .BoxContent {
+        display: flex;
+        flex-direction: column;
+        margin: 0px auto;
+        width: 100%;
+        margin-top: 30px;
+        padding: 20px;
+    }
+
+}
+
+/* Máy tính bảng */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    /* Các luật CSS dành cho máy tính bảng ở đây */
+    body {
+        font-size: 16px;
+    }
+
+    .BoxUser {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .UserHeaderBg {
+        margin: 0px auto;
+        text-align: center;
+    }
+
+    .UserBG {
+        width: 100%;
+        margin: 0px auto;
+    }
+
+    .UserHeaderBg button {
+        bottom: 45em;
+        right: 20px;
+    }
+
+    .UserHeaderBg button:hover {
+        background-color: var(--bs-blue);
+    }
+
+    .UserImg {
+        bottom: 35em;
+        left: 50px;
+
+    }
+
+    .UserImg img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50% !important;
+    }
+
+    .LeftContent {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .RightContent {
+        width: 100%;
+
+    }
+
+    .BoxContent {
+        display: flex;
+        flex-direction: column;
+        margin: 0px auto;
+        width: 100%;
+        margin-top: 30px;
+        padding: 20px;
+    }
+}
+
+/* Laptop */
+@media screen and (min-width: 1024px) and (max-width: 1365px) {
+
+    /* Các luật CSS dành cho laptop ở đây */
+    body {
+        font-size: 18px;
+    }
+
+    .BoxUser {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .UserHeaderBg {
+        margin: 0px auto;
+        text-align: center;
+    }
+
+    .UserBG {
+        width: 100%;
+        margin: 0px auto;
+    }
+
+    .UserHeaderBg button {
+        bottom: 40em;
+        right: 20px;
+    }
+
+    .UserHeaderBg button:hover {
+        background-color: var(--bs-blue);
+    }
+
+    .UserImg {
+        bottom: 32em;
+        left: 50px;
+    }
+
+    .UserImg img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50% !important;
+    }
+
+    .LeftContent {
+        width: 40%;
+        margin-right: 20px;
+    }
+
+    .RightContent {
+        width: 60%;
+
+    }
+
+    .BoxContent {
+        display: flex;
+        margin: 0px auto;
+        width: 100%;
+        margin-top: 30px;
+        padding: 20px;
+    }
+}
+
+/* Máy tính bàn */
+@media screen and (min-width: 1366px) {
+
+    /* Các luật CSS dành cho máy tính bàn ở đây */
+    body {
+        font-size: 20px;
+    }
+
+
+    .UserBG {
+        width: 1500px;
+        margin: 0px auto;
+    }
+
+    .UserHeaderBg img {
+        margin: 0px auto;
+        position: relative;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 0% 0% 10px 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .UserHeaderBg button {
+        bottom: 35em;
+        right: 250px;
+    }
+
+    .UserHeaderBg button:hover {
+        background-color: var(--bs-blue);
+    }
+
+    .UserImg {
+        bottom: 27em;
+        left: 250px;
+    }
+
+    .UserImg img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50% !important;
+    }
+
+
+    .LeftContent {
+        width: 40%;
+        margin-right: 20px;
+    }
+
+    .RightContent {
+        width: 60%;
+
+    }
+
+
+    .BoxContent {
+        width: 1500px;
+    }
+
+}
+
+
+
+
+.userBtn button {
+    width: 400px;
+    border: none;
+    border-radius: 4px;
+    padding: 3px 30px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.7s;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.favoriteButton {
+
+    background-color: var(--bs-gray);
+}
+
+.UnfavoriteButton {
+    background-color: var(--bs-orange);
+    color: var(--bs-white);
+}
+
+.userBtn p {
+    margin-right: 10px;
+}
+
+.RightCard header {
+    display: flex;
+}
+
+.RightCard header p {
+
+    text-align: center;
+    min-width: 250px;
+    margin-left: 10px;
+    padding: 6px 20px;
+    border: 1px solid var(--bs-orange);
+    border-radius: 5px;
+    transition: 0.7s;
+
+}
+
+.RightCard header p:hover {
+    color: var(--bs-orange);
+    cursor: pointer;
+    background-color: var(--bs-orange);
+    color: var(--bs-white);
+    border: none;
+}
