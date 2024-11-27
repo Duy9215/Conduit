@@ -1,255 +1,186 @@
-/* Navbar.module.css */
-:root {
-  --bs-blue: #0d6efd;
-  --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1;
-  --bs-pink: #f65282;
-  --bs-red: #dc3545;
-  --bs-orange: #fd7e14;
-  --bs-yellow: #FFC955;
-  --bs-green: #198754;
-  --bs-teal: #20c997;
-  --bs-cyan: #0dcaf0;
-  --bs-black: #000;
-  --bs-white: #fff;
-  --bs-gray: #6c757d;
-  --bs-gray-dark: #343a40;
-  --bs-gray-100: #f8f9fa;
-  --bs-gray-200: #e9ecef;
-  --bs-gray-300: #dee2e6;
-  --bs-gray-400: #ced4da;
-  --bs-gray-500: #adb5bd;
-  --bs-gray-600: #6c757d;
-  --bs-gray-700: #495057;
-  --bs-gray-800: #343a40;
-  --bs-gray-900: #212529;
-  --bs-primary: #0d6efd;
-  --bs-secondary: #6c757d;
-  --bs-success: #35c56c;
-  --bs-info: #0dcaf0;
-  --bs-warning: #FFC955;
-  --bs-danger: #dc3545;
-  --bs-light: #f8f9fa;
-  --bs-dark: #231d3c;
-  --bs-primary-rgb: 13, 110, 253;
-  --bs-secondary-rgb: 108, 117, 125;
-  --bs-success-rgb: 53, 197, 108;
-  --bs-info-rgb: 13, 202, 240;
-  --bs-warning-rgb: 255, 201, 85;
-  --bs-danger-rgb: 220, 53, 69;
-  --bs-light-rgb: 248, 249, 250;
-  --bs-dark-rgb: 35, 29, 60;
-  --bs-white-rgb: 255, 255, 255;
-  --bs-black-rgb: 0, 0, 0;
-  --bs-body-color-rgb: 33, 37, 41;
-  --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
-  --bs-body-font-family: var(--bs-font-sans-serif);
-  --bs-body-font-size: 1rem;
-  --bs-body-font-weight: 400;
-  --bs-body-line-height: 1.5;
+/* Blog.module.css */
 
+/* Đặt màu nền và màu sắc chủ đạo */
+:root {
+  --primary-bg-color: #f0f8ff; /* Nền sáng - màu xanh nhạt */
+  --secondary-bg-color: #ffffff; /* Nền trắng cho các phần tử */
+  --highlight-color: #3498db; /* Màu xanh dương sáng */
+  --primary-text-color: #2c3e50; /* Màu chữ tối */
+  --secondary-text-color: #95a5a6; /* Màu chữ nhạt */
+  --button-color: #3498db; /* Màu nút xanh dương */
+  --button-hover-color: #2980b9; /* Màu nút hover xanh dương đậm */
 }
 
+/* Nền chính của trang */
+.BoxBlog {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial', sans-serif;
+  padding: 30px;
+}
+
+/* Tiêu đề trang */
+.HeaderInfor h1 {
+  font-size: 2.5rem;
+  color: var(--highlight-color);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.HeaderInfor p {
+  color: var(--secondary-text-color);
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* Bố cục chính của bài viết */
 .BoxContent {
   display: flex;
   justify-content: space-between;
-
+  gap: 30px;
+  margin-top: 30px;
 }
 
+/* Bài viết chính */
 .RightContent {
   width: 70%;
+  overflow-y: auto;
+  padding-right: 20px;
 }
 
-.LeftContent {
-  width: 30%;
-}
-
-
-/* Styling for the item blog container */
 .ItemBlog {
-  background-color: #f7f7f7;
+  background-color: var(--secondary-bg-color);
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  cursor: pointer;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Header styling */
+.ItemBlog:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Phần header của mỗi bài viết */
 .Header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
-.Header div {
-  font-size: 16px;
-  color: #333;
-}
-
-.Header span {
-  color: #888;
-  font-size: 14px;
-}
-
-/* Icon styling */
-.BsFillBookmarkFill,
-.LuMoreHorizontal {
-  font-size: 20px;
-  color: #888;
-  margin-left: 10px;
+.nameUser {
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
-/* Content styling */
-.ContentIteam {
-  margin-top: 10px;
-  overflow: auto;
+.nameUser img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.ContentIteam h2 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-
-
+/* Phần yêu thích bài viết */
+.favoriteButton, .UnfavoriteButton {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--highlight-color); /* Màu xanh dương cho icon yêu thích */
+  transition: color 0.2s;
 }
 
-.ContentIteam figcaption {
-  font-size: 16px;
-  color: #555;
+.favoriteButton:hover, .UnfavoriteButton:hover {
+  color: var(--button-hover-color); /* Màu khi hover */
 }
 
-/* Footer styling */
+/* Footer bài viết (tags và ngày tháng) */
 .FooterIteam {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 15px;
-  color: #888;
-}
-
-.FooterIteam span {
-  font-size: 14px;
-  background-color: #f0f0f0;
-  padding: 5px 10px;
-  border-radius: 4px;
-  margin: 0px 5px;
-}
-
-.FooterIteam div {
-  font-size: 14px;
-}
-
-
-/* Styling for the left content container */
-.LeftContent {
-  border-radius: 8px;
-  padding: 20px;
-
-}
-
-/* Name and tags styling */
-.NameTopicTags {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 0.9rem;
 }
 
 .Tags {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .Tags span {
-  font-size: 14px;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: var(--highlight-color); /* Màu xanh dương cho các tag */
   padding: 5px 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
 }
 
-/* Ads styling */
-.ads {
-
-  margin-top: 20px;
-
+.Tags span:hover {
+  background-color: #2980b9; /* Màu xanh dương đậm hơn khi hover */
 }
 
-.ads img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.imageAuthor {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-
-/* Responsive styles for mobile and tablet */
-@media screen and (max-width: 768px) {
-  .BoxContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .RightContent {
-    width: 100%;
-  }
-
-  .LeftContent {
-    width: 100%;
-  }
-
-}
-
-
+/* Thanh phân trang */
 .Pagination {
   display: flex;
   justify-content: center;
+  gap: 10px;
   margin-top: 20px;
 }
 
-.Page,
-.ActivePage {
+.Page {
   cursor: pointer;
-  margin: 0 5px;
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--secondary-bg-color);
+  color: var(--primary-text-color);
 }
 
 .ActivePage {
-  background-color: var(--bs-orange);
-  color: #fff;
+  background-color: var(--highlight-color); /* Màu xanh dương cho trang hiện tại */
+  color: #ffffff;
 }
 
-.UnfavoriteButton {
-  color: var(--bs-orange);
+.Page:hover {
+  background-color: var(--button-hover-color); /* Khi hover thì màu chuyển sang xanh dương đậm */
 }
 
-.favoriteButton {
-  color: var(--bs-gray);
+/* Sidebar trái */
+.LeftContent {
+  width: 25%;
+  background-color: var(--secondary-bg-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.nameUser:hover {
-  color: var(--bs-orange);
-  text-decoration: underline;
+/* Quảng cáo */
+.ads img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
-.nameUser {
+/* Các thanh menu như Tags */
+.NameTopicTags {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-text-color);
+}
+
+.Tags span {
+  background-color: var(--highlight-color);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin-right: 10px;
   cursor: pointer;
+}
+
+.Tags span:hover {
+  background-color: #2980b9;
 }

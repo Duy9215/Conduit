@@ -127,7 +127,7 @@ const Blog = () => {
             <div className={styled.BoxBlog}>
                 <div className={styled.HeaderInfor}>
                     <h1>Bài viết dành cho bạn</h1>
-                    <p>Tổng hợp các bài viết G2FA</p>
+                    <p>Tổng hợp các bài viết GR1</p>
                 </div>
 
                 <div className={styled.BoxContent}>
