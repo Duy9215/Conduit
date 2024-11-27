@@ -83,6 +83,12 @@ const Blog = () => {
 
     };
     const handleFavoriteClick = async (slug) => {
+        if (!user.token) {
+            alert('Vui lòng đăng nhập để thực hiện hành động này!');
+            navigate('/login');
+            return;
+        }
+
         try {
             const articleIndex = articles.findIndex(article => article.slug === slug);
 
@@ -94,9 +100,9 @@ const Blog = () => {
             const article = updatedArticles[articleIndex];
 
             if (article.favorited) {
-                await unfavoriteArticle(slug);
+                await unfavoriteArticle(slug, user.token);
             } else {
-                await favoriteArticle(slug);
+                await favoriteArticle(slug, user.token);
             }
 
             article.favorited = !article.favorited;

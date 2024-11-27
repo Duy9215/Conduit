@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/ReactToastify.css';
 import { registerUser } from '../utils/Api';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 
 const Register = () => {
@@ -112,7 +113,7 @@ const Register = () => {
 
                         </div>
                         <Button style={{ borderRadius: '50px', padding: '15px', marginTop: '20px' }} variant="outline-primary" onClick={handleSignUp}>Xác nhận</Button>
-                        <div>
+                        <div className='fRegister'>
                             <p className={styled.textInfo}><span>Bạn Đã Có Tài Khoản?</span><button className={styled.BtnDangKy} onClick={handleBackLogin}>Đăng nhập</button></p>
                         </div>
                     </div>
@@ -130,6 +131,7 @@ const Register = () => {
                     theme="light"
                 />
             </Container>
+            <Footer />
         </div>
     );
 };
