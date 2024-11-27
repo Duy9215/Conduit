@@ -58,7 +58,6 @@
 
 .Navbar {
   background-color: #fff;
-  padding: 0px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,12 +79,8 @@
 }
 
 .Logo a {
-  color: #000;
+  color: var(--bs-primary);
   text-decoration: none;
-}
-
-.Logo a:hover {
-  color: var(--bs-orange);
 }
 
 .Nav {
@@ -108,7 +103,7 @@
 .Nav li button {
   font-size: 16px;
   padding: 8px 50px;
-  border: 2px solid var(--bs-orange);
+  border: 2px solid var(--bs-primary);
   border-radius: 999px;
   font-weight: 600;
   background-color: #fff;
@@ -117,7 +112,7 @@
 
 .Nav li button:hover {
   color: #fff;
-  background-color: var(--bs-orange);
+  background-color: var(--bs-primary);
 }
 
 @media screen and (max-width: 768px) {
@@ -136,26 +131,5 @@
   .Nav {
     width: 100%;
     text-align: center;
-
-  }
-
-  .IconSearch {
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-
-  .headerSearch,
-  .Nav li button {
-    width: 50%;
-    margin: 10px auto;
-  }
-
-  .IconSearch {
-    position: absolute;
-    top: 50%;
-    left: 180px;
-    transform: translateY(-50%);
-    color: #000;
-    font-size: 20px;
   }
 }
