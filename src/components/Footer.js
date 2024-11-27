@@ -7,7 +7,7 @@ const Footer = () => {
     <div className={styled.PageContainer}>
       <div className={styled.BoxFooter}>
         <Link to="/" className={styled.FLOGO}>
-          GR1
+          group1
         </Link>
         <span className={styled.FText}>
           An interactive learning project from{" "}
@@ -16,7 +16,6 @@ const Footer = () => {
           </a>
           . Code &amp; design by Group 1.
         </span>
-
         <div className={styled.FNameMemBer}>
           <ul>
             <li>Duong Viet Duy</li>
