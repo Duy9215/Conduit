@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import { Container, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import styles from "../assets/styles/Login.module.css";
-import { AiOutlineUser } from "react-icons/ai";
-import { BiArrowBack } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../utils/Api";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Login = () => {
-  const [showLogin, setShowLogin] = useState(false);
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -32,92 +29,56 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-      toast.error("Login failed!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-      });
+      setErrorMessage("Đăng nhập không thành công! Vui lòng thử lại.");
     }
   };
 
   const renderLoginForm = () => (
     <>
-      <Header />
       <Form.Group className="mb-3" controlId="formGroupEmail">
-        <Form.Control
-          style={{ borderRadius: "50px", padding: "15px" }}
+        <input
           type="email"
           name="email"
           placeholder="Email"
           value={credentials.email}
           onChange={handleInputChange}
+          className="form-control"
+          required
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formGroupPassword">
-        <Form.Control
-          style={{ borderRadius: "50px", padding: "15px" }}
+        <input
           type="password"
           name="password"
           placeholder="Password"
           value={credentials.password}
           onChange={handleInputChange}
+          className="form-control"
         />
       </Form.Group>
-      <Button className="mt-2" variant="outline-primary" onClick={handleLogin}>
+      <Button className={styles.BtnLogin} onClick={handleLogin}>
         Login
       </Button>
-      <button
-        style={{ fontSize: "15px", marginTop: "10px", padding: "10px 15px" }}
-        onClick={() => setShowLogin(false)}
-      >
-        <BiArrowBack />
-      </button>
-    </>
-  );
-
-  const renderInitialOptions = () => (
-    <>
-      <button
-        className={`${styles.UserICon}`}
-        onClick={() => setShowLogin(true)}
-      >
-        <AiOutlineUser /> <span>Sử dụng email/số điện thoại</span>
-      </button>
-      <p className={styles.textInfo}>
-        <span>Bạn Chưa Có Tài Khoản?</span>
-        <button
-          className={styles.BtnDangKy}
-          onClick={() => navigate("/register")}
-        >
-          Đăng ký
-        </button>
-      </p>
+      {errorMessage && <div className={styles.ErrorMessage}>{errorMessage}</div>}
     </>
   );
 
   return (
-    <Container className={styles.Container}>
-      <Form className={styles.FormLogin}>
-        {!showLogin && (
-          <BiArrowBack
-            className={styles.IconBack}
-            onClick={() => navigate("/")}
-          />
-        )}
-        <div className={styles.LoginWith}>
-          <div className={styles.InforLogin}>
-            <div className={styles.logo}>GR1</div>
-            <h2>Đăng Nhập Vào GR1</h2>
+    <>
+      <Header />
+      <Container className={styles.Container}>
+        <Form className={styles.FormLogin}>
+          <div className={styles.LoginWith}>
+            <div className={styles.InforLogin}>
+              <h2>Sign in</h2>
+              <Link className={styles.BtnDangKy} to="/register">Need an account?</Link>
+            </div>
+            {renderLoginForm()}
           </div>
-          {showLogin ? renderLoginForm() : renderInitialOptions()}
-        </div>
-      </Form>
-      <ToastContainer />
-    </Container>
+        </Form>
+      </Container>
+      <Footer />
+    </>
   );
 };
 
