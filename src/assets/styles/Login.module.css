@@ -1,0 +1,207 @@
+/* Navbar.module.css */
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #f65282;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #FFC955;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-black: #000;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-gray-100: #f8f9fa;
+  --bs-gray-200: #e9ecef;
+  --bs-gray-300: #dee2e6;
+  --bs-gray-400: #ced4da;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #6c757d;
+  --bs-gray-700: #495057;
+  --bs-gray-800: #343a40;
+  --bs-gray-900: #212529;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #35c56c;
+  --bs-info: #0dcaf0;
+  --bs-warning: #FFC955;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #231d3c;
+  --bs-primary-rgb: 13, 110, 253;
+  --bs-secondary-rgb: 108, 117, 125;
+  --bs-success-rgb: 53, 197, 108;
+  --bs-info-rgb: 13, 202, 240;
+  --bs-warning-rgb: 255, 201, 85;
+  --bs-danger-rgb: 220, 53, 69;
+  --bs-light-rgb: 248, 249, 250;
+  --bs-dark-rgb: 35, 29, 60;
+  --bs-white-rgb: 255, 255, 255;
+  --bs-black-rgb: 0, 0, 0;
+  --bs-body-color-rgb: 33, 37, 41;
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-font-size: 1rem;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.5;
+
+}
+
+
+
+/* Login.module.css */
+
+.Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Đảm bảo container chiếm toàn bộ chiều cao của màn hình */
+
+}
+
+.FormLogin {
+  width: 600px;
+  /* Độ rộng của Form */
+  height: 550px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+/* Login.module.css */
+
+.LoginWith {
+  width: 500px;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.LoginWith button {
+  background-color: transparent;
+  border: 1px solid var(--bs-white);
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.Github span {
+  text-decoration: underline;
+}
+
+.Github:hover span {
+  color: #212529;
+  text-decoration-color: #212529;
+}
+
+.Google span {
+  text-decoration: underline;
+}
+
+.Google:hover span {
+  color: #EA4335;
+  text-decoration-color: #EA4335;
+}
+
+.Google svg {
+  color: #EA4335;
+}
+
+.FaceBook span {
+  text-decoration: underline;
+}
+
+.FaceBook:hover span {
+  color: #3b5998;
+  text-decoration-color: #3b5998;
+}
+
+.FaceBook svg {
+  color: #3b5998;
+}
+
+.UserICon span {
+  text-decoration: underline;
+}
+
+.UserICon:hover span {
+  color: var(--bs-gray-600);
+}
+
+/* Login css */
+.LabelLogin {
+  font-size: 20px;
+}
+
+.AllButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+.AllButton span {
+  display: flex;
+  font-size: 19px;
+  font-weight: 200px;
+}
+
+.InforLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.InforLogin .logo {
+  padding: 20px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0dcaf0;
+}
+
+.BtnDangKy {
+  font-size: none !important;
+  border: none !important;
+  color: var(--bs-primary);
+  font-size: 17px !important;
+  font-weight: 600;
+}
+
+.textInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.IconBack {
+  font-size: 20px;
+  border-radius: 999px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.IconBack:hover {
+  font-size: 20px;
+  border-radius: 999px;
+  border: 1px solid var(--bs-primary);
+  color: var(--bs-primary);
+  cursor: pointer;
+}
+
+.mt-2 {
+  margin-left: 300px;
+}
