@@ -30,6 +30,7 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #231d3c;
+  --bs-banana-green: #5cb85c;
   --bs-primary-rgb: 13, 110, 253;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 53, 197, 108;
@@ -55,38 +56,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-.FormLogin {
-  width: 600px;
-  height: 550px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: rgb(255, 255, 255) 0px 3px 8px;
+  height: 75vh;
 }
 
 .LoginWith {
-  width: 500px;
+  width: 300px;
   margin: 0px auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
   justify-content: center;
-}
-
-.LoginWith button {
-  border-radius: 999px;
-  background-color: transparent;
-  border: 1px solid var(--bs-gray-700);
-  cursor: pointer;
-  font-size: 24px;
-  padding: 10px;
-}
-
-.LabelLogin {
-  font-size: 20px;
 }
 
 .InforLogin {
@@ -97,37 +76,30 @@
   margin-bottom: 20px;
 }
 
-.InforLogin .logo {
-  padding: 20px;
+.BtnLogin {
+
 }
 
 .BtnDangKy {
-  font-size: none !important;
-  border: none !important;
-  color: var(--bs-orange);
-  font-size: 17px !important;
-  font-weight: 600;
+  color: var(--bs-primary);
+  text-decoration: none;
+}
+
+.BtnDangKy:hover {
+  text-decoration: underline;
+}
+
+.ErrorMessage {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .textInfo {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.IconBack{
-  font-size: 20px;
-  border-radius: 999px;
-  border: 1px solid #000;
-  cursor: pointer;
-}
-
-.IconBack:hover{
-  font-size: 20px;
-  border-radius: 999px;
-  border: 1px solid var(--bs-orange);
-  color: var(--bs-orange);
-  cursor: pointer;
 }
 
 .UserICon {
@@ -138,7 +110,7 @@
 }
 
 .UserICon:hover {
-  background-color: var(--bs-orange);
+  background-color: var(--bs-primary);
   color: var(--bs-white);
   box-shadow: 0 4px 10px rgb(255, 254, 254);
 }
