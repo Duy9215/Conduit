@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Navbar } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import styled from '../assets/styles/Register.module.css';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/ReactToastify.css';
 import { registerUser } from '../utils/Api';
+import Header from '../components/Header';
+
+
 const Register = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -81,49 +84,53 @@ const Register = () => {
     };
 
     return (
-        <Container className={styled.Container}>
-            <Form className={styled.FormLogin}>
-                <div className={styled.LoginWith}>
-                    <div className={styled.InforLogin}>
-                        <h3>Đăng Ký Tài Khoản</h3>
-                    </div>
-                    <div>
-                        <Form.Group className="mb-3" controlId="formGroupUsername">
-                            <Form.Label>Tên người dùng</Form.Label>
-                            <Form.Control style={{ borderRadius: '50px', padding: '15px' }} type="text" placeholder="Nhập tên người dùng" value={username} onChange={(e) => setUsername(e.target.value)} />
-                            {errors.username && <p className={styled.error} style={{ color: 'red' }}>{errors.username}</p>}
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formGroupEmail">
-                            <Form.Label>Địa chỉ email</Form.Label>
-                            <Form.Control style={{ borderRadius: '50px', padding: '15px' }} type="email" placeholder="Nhập email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            {errors.email && <p className={styled.error} style={{ color: 'red' }}>{errors.email}</p>}
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formGroupPassword">
-                            <Form.Label>Mật khẩu</Form.Label>
-                            <Form.Control style={{ borderRadius: '50px', padding: '15px' }} type="password" placeholder="Nhập mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} />
-                            {errors.password && <p className={styled.error} style={{ color: 'red' }}>{errors.password}</p>}
-                        </Form.Group>
+        <div>
+            <Header />
+            <Container className={styled.Container}>
 
+                <Form className={styled.FormLogin}>
+                    <div className={styled.LoginWith}>
+                        <div className={styled.InforLogin}>
+                            <h3>Đăng Ký Tài Khoản</h3>
+                        </div>
+                        <div>
+                            <Form.Group className="mb-3" controlId="formGroupUsername">
+                                <Form.Label>Tên người dùng</Form.Label>
+                                <Form.Control style={{ borderRadius: '50px', padding: '15px' }} type="text" placeholder="Nhập tên người dùng" value={username} onChange={(e) => setUsername(e.target.value)} />
+                                {errors.username && <p className={styled.error} style={{ color: 'red' }}>{errors.username}</p>}
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formGroupEmail">
+                                <Form.Label>Địa chỉ email</Form.Label>
+                                <Form.Control style={{ borderRadius: '50px', padding: '15px' }} type="email" placeholder="Nhập email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                {errors.email && <p className={styled.error} style={{ color: 'red' }}>{errors.email}</p>}
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formGroupPassword">
+                                <Form.Label>Mật khẩu</Form.Label>
+                                <Form.Control style={{ borderRadius: '50px', padding: '15px' }} type="password" placeholder="Nhập mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                {errors.password && <p className={styled.error} style={{ color: 'red' }}>{errors.password}</p>}
+                            </Form.Group>
+
+                        </div>
+                        <Button style={{ borderRadius: '50px', padding: '15px', marginTop: '20px' }} variant="outline-primary" onClick={handleSignUp}>Xác nhận</Button>
+                        <div>
+                            <p className={styled.textInfo}><span>Bạn Đã Có Tài Khoản?</span><button className={styled.BtnDangKy} onClick={handleBackLogin}>Đăng nhập</button></p>
+                        </div>
                     </div>
-                    <Button style={{ borderRadius: '50px', padding: '15px', marginTop: '20px' }} variant="outline-primary" onClick={handleSignUp}>Xác nhận</Button>
-                    <div>
-                        <p className={styled.textInfo}><span>Bạn Đã Có Tài Khoản?</span><button className={styled.BtnDangKy} onClick={handleBackLogin}>Đăng nhập</button></p>
-                    </div>
-                </div>
-            </Form>
-            <ToastContainer
-                position="top-center"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
-        </Container>
+                </Form>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
+            </Container>
+        </div>
     );
 };
 
