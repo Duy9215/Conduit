@@ -87,12 +87,6 @@
   display: flex;
 }
 
-.imgUser img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-
 .Nav ul {
   list-style: none;
   margin: 0;
@@ -132,4 +126,9 @@
     width: 100%;
     text-align: center;
   }
+}
+
+.Active {
+  font-weight: bold;
+  color: #007bff; /* Hoặc bất kỳ màu nào bạn muốn */
 }
