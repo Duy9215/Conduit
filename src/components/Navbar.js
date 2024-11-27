@@ -40,9 +40,8 @@ const Navbar = ({ isProfile = false }) => {
           {!isProfile ? (
             <Link
               to={"/"}
-              style={{ fontFamily: "monospace", fontSize: "30px" }}
             >
-              GR1
+              group1
             </Link>
           ) : (
             <Link to={"/"}>
@@ -57,14 +56,13 @@ const Navbar = ({ isProfile = false }) => {
                 {[""].map((variant) => (
                   <DropdownButton
                     as={ButtonGroup}
-                    title={`Xin chào, ${username}`}
+                    title={`Hi, ${username}`}
                     id={`dropdown-variants-${variant}`}
                     variant={variant.toLowerCase()}
                     show={dropdownShow}
                     onMouseEnter={() => setDropdownShow(true)}
                     onMouseLeave={() => setDropdownShow(false)}
                     className={`${styled.CustomDropdownButton} custom-dropdown`}
-                    style={{ fontFamily: "monospace" }}
                   >
                     <Dropdown.Item eventKey="1">
                       <AiOutlineUser className="mx-2 mb-1" />{" "}
@@ -86,19 +84,21 @@ const Navbar = ({ isProfile = false }) => {
                     </Dropdown.Item>
                     <Dropdown.Item onClick={handleLogout} eventKey="2">
                       <BiLogOut className="mx-2 mb-1" />
-                      Đăng xuất
+                       Logout
                     </Dropdown.Item>
                   </DropdownButton>
                 ))}
               </>
             ) : (
               <li>
-                <button onClick={changeStatus}>Đăng Nhập</button>
+                <button onClick={changeStatus}>Login</button>
+                <button onClick={changeStatus}>Register</button>
               </li>
             )}
           </ul>
         </div>
       </div>
+      <div className="container-fluid"></div>
     </div>
   );
 };
