@@ -208,3 +208,15 @@
 .Tags span:hover {
   background-color: #2980b9;
 }
+
+.DisabledFavoriteButton {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--secondary-text-color);
+  /* Màu xanh dương cho icon yêu thích */
+  transition: color 0.2s;
+}
+
+.DisabledFavoriteButton:hover {
+  color: var(--button-hover-color);
+}

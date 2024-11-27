@@ -38,7 +38,7 @@ const Blog = () => {
 
         fetchArticles();
         fetchTags();
-    }, []);
+    }, [user.token]);
 
 
     const formatDate = (dateString) => {
@@ -83,11 +83,7 @@ const Blog = () => {
 
     };
     const handleFavoriteClick = async (slug) => {
-        if (!user.token) {
-            alert('Vui lòng đăng nhập để thực hiện hành động này!');
-            navigate('/login');
-            return;
-        }
+
 
         try {
             const articleIndex = articles.findIndex(article => article.slug === slug);
@@ -114,6 +110,7 @@ const Blog = () => {
         }
     };
 
+
     const handleAddArticle = (newArticle) => {
         setArticles([...articles, newArticle]);
     };
@@ -139,10 +136,23 @@ const Blog = () => {
                                         {article.author.username}
                                     </div>
                                     <div>
-                                        {article.favoritesCount}   <BsFillBookmarkFill
-                                            onClick={() => handleFavoriteClick(article.slug)}
-                                            className={article.favorited ? styled.UnfavoriteButton : styled.favoriteButton}
-                                        /> <LuMoreHorizontal />
+                                        {article.favoritesCount}
+                                        {user.token ? (
+                                            <BsFillBookmarkFill
+                                                onClick={() => handleFavoriteClick(article.slug)}
+                                                className={article.favorited ? styled.UnfavoriteButton : styled.favoriteButton}
+                                            />
+                                        ) : (
+                                            <BsFillBookmarkFill
+                                                className={styled.DisabledFavoriteButton}
+                                                onClick={() => {
+                                                    if (window.confirm('Vui lòng đăng nhập để yêu thích bài viết!')) {
+                                                        navigate('/login');
+                                                    }
+                                                }}
+                                            />
+                                        )}
+                                        <LuMoreHorizontal />
                                     </div>
                                 </header>
                                 <div className={styled.ContentIteam} onClick={() => handleToDetails(article.slug)}>
