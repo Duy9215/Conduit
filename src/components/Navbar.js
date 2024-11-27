@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "../assets/styles/Navbar.module.css";
+import { Nav } from "react-bootstrap";
 import { BiLogOut, BiArrowBack } from "react-icons/bi";
 import { AiOutlineUser, AiOutlineEdit } from "react-icons/ai";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -12,15 +13,16 @@ const Navbar = ({ isProfile = false }) => {
   const [username, setUsername] = useState("");
   const [dropdownShow, setDropdownShow] = useState(false);
   const navigate = useNavigate();
-  const changeStatus = () => {
-    navigate("/login");
-  };
+  const location = useLocation();
+
   const handleLogout = () => {
     localStorage.removeItem("user-info");
     setIsLoggedIn(false);
     setUsername("");
     navigate("/");
   };
+
+
 
   useEffect(() => {
     const userInfo = localStorage.getItem("user-info");
@@ -38,11 +40,7 @@ const Navbar = ({ isProfile = false }) => {
       <div className={`${styled.Navbar} ${isProfile && styled.ProfileNab}`}>
         <div className={styled.Logo}>
           {!isProfile ? (
-            <Link
-              to={"/"}
-            >
-              group1
-            </Link>
+            <Link to={"/"}>group1</Link>
           ) : (
             <Link to={"/"}>
               <BiArrowBack />
@@ -56,7 +54,7 @@ const Navbar = ({ isProfile = false }) => {
                 {[""].map((variant) => (
                   <DropdownButton
                     as={ButtonGroup}
-                    title={`Hi, ${username}`}
+                    title={`Xin chào, ${username}`}
                     id={`dropdown-variants-${variant}`}
                     variant={variant.toLowerCase()}
                     show={dropdownShow}
@@ -84,21 +82,44 @@ const Navbar = ({ isProfile = false }) => {
                     </Dropdown.Item>
                     <Dropdown.Item onClick={handleLogout} eventKey="2">
                       <BiLogOut className="mx-2 mb-1" />
-                       Logout
+                      Logout
                     </Dropdown.Item>
                   </DropdownButton>
                 ))}
               </>
             ) : (
               <li>
-                <button onClick={changeStatus}>Login</button>
-                <button onClick={changeStatus}>Register</button>
+                <Nav>
+                  <Nav.Link
+                    as={Link}
+                    to="/"
+                    className={`${styled.NavLink} ${location.pathname === "/" ? styled.Active : ""
+                      }`}
+                  >
+                    Home
+                  </Nav.Link>
+                  <Nav.Link
+                    as={Link}
+                    to="/login"
+                    className={`${styled.NavLink} ${location.pathname === "/login" ? styled.Active : ""
+                      }`}
+                  >
+                    Login
+                  </Nav.Link>
+                  <Nav.Link
+                    as={Link}
+                    to="/register"
+                    className={`${styled.NavLink} ${location.pathname === "/register" ? styled.Active : ""
+                      }`}
+                  >
+                    Register
+                  </Nav.Link>
+                </Nav>
               </li>
             )}
           </ul>
         </div>
       </div>
-      <div className="container-fluid"></div>
     </div>
   );
 };
