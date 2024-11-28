@@ -23,13 +23,10 @@ const Register = () => {
     }
 
     const signUp = async () => {
-        // Validate username, email, password
         const validationErrors = {};
-
         if (!username.trim()) {
             validationErrors.username = "Vui lòng nhập tên đăng nhập";
         }
-
         if (!email.trim()) {
             validationErrors.email = "Vui lòng nhập email";
         } else {
@@ -38,28 +35,25 @@ const Register = () => {
                 validationErrors.email = "Định dạng email không hợp lệ";
             }
         }
-
         if (!password.trim()) {
             validationErrors.password = "Vui lòng nhập mật khẩu";
         } else if (password.length < 8) {
             validationErrors.password = "Mật khẩu phải có ít nhất 8 ký tự";
         }
-
         const usernamePattern = /^[a-zA-Z0-9]+$/;
         if (!usernamePattern.test(username)) {
             validationErrors.username = "Tên đăng nhập không hợp lệ, không sử dụng kí tự đặc biệt";
         }
-
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
         }
+
         try {
             const response = await registerUser(username, email, password);
             console.log("Kết quả đăng ký:", response);
-            localStorage.setItem("user-info", JSON.stringify(response));
             setIsRegistered(true);
-            notify()
+            notify();
             setTimeout(() => {
                 navigate("/login");
             }, 3000);
@@ -73,6 +67,7 @@ const Register = () => {
             }
         }
     };
+
 
     const handleSignUp = async () => {
         signUp();
@@ -88,7 +83,6 @@ const Register = () => {
         <div>
             <Header />
             <Container className={styled.Container}>
-
                 <Form className={styled.FormLogin}>
                     <div className={styled.LoginWith}>
                         <div className={styled.InforLogin}>

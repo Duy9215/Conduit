@@ -28,8 +28,12 @@ const Navbar = ({ isProfile = false }) => {
         const userInfo = localStorage.getItem("user-info");
         if (userInfo) {
             const parsedUserInfo = JSON.parse(userInfo);
-            setUsername(parsedUserInfo.username);
-            setIsLoggedIn(true);
+            if (parsedUserInfo.username) {
+                setUsername(parsedUserInfo.username);
+                setIsLoggedIn(true);
+            } else {
+                setIsLoggedIn(false);
+            }
         } else {
             setIsLoggedIn(false);
         }
