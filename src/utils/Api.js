@@ -94,20 +94,26 @@ export async function updateUserImage(updatedUserData) {
 // Articles
 
 
-export async function getArticles() {
+export async function getArticles(token) {
     try {
+        const headers = {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        };
+
+        if (token) {
+            headers.Authorization = `Bearer ${token}`;
+        }
+
         const response = await axios.get('https://node-express-conduit.appspot.com/api/articles', {
-            headers: {
-                "Content-Type": "application/json",
-                Accept: 'application/json',
-                Authorization: `Bearer ${user.token}`
-            },
+            headers: headers,
         });
         return response.data;
     } catch (error) {
         throw error;
     }
 }
+
 
 export async function getArticlesDetails(slug) {
     const res = await axios.get(`https://node-express-conduit.appspot.com/api/articles/${slug}`, {

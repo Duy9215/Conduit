@@ -1,9 +1,13 @@
 /* Navbar.module.css */
 :root {
-  --bs-blue: #0d6efd; /* Định nghĩa màu xanh dương */
-  --bs-light-blue: #4f8afc; /* Màu xanh dương nhạt cho các hover */
-  --bs-dark-blue: #003366; /* Màu xanh dương đậm cho background */
-  --bs-info: #0dcaf0; /* Màu info cho các thành phần phụ */
+  --bs-blue: #0d6efd;
+  /* Định nghĩa màu xanh dương */
+  --bs-light-blue: #4f8afc;
+  /* Màu xanh dương nhạt cho các hover */
+  --bs-dark-blue: #003366;
+  /* Màu xanh dương đậm cho background */
+  --bs-info: #0dcaf0;
+  /* Màu info cho các thành phần phụ */
   --bs-white: #fff;
   --bs-black: #000;
   --bs-primary: #0d6efd;
@@ -17,7 +21,8 @@
 }
 
 nav {
-  background-color: var(--bs-dark-blue); /* Màu nền navbar là xanh dương đậm */
+  background-color: var(--bs-dark-blue);
+  /* Màu nền navbar là xanh dương đậm */
   padding: 1rem;
   border-radius: 8px;
 }
@@ -26,7 +31,8 @@ nav ul {
   list-style: none;
   padding: 0;
   display: flex;
-  justify-content: space-around; /* Căn giữa các mục menu */
+  justify-content: space-around;
+  /* Căn giữa các mục menu */
 }
 
 nav ul li {
@@ -35,17 +41,19 @@ nav ul li {
 
 nav a {
   text-decoration: none;
-  color: var(--bs-white); /* Màu chữ là trắng */
+  color: var(--bs-white);
+  /* Màu chữ là trắng */
   font-weight: bold;
   font-size: 1.1rem;
   transition: color 0.3s ease;
 }
 
 nav a:hover {
-  color: var(--bs-light-blue); /* Chuyển sang màu xanh dương nhạt khi hover */
+  color: var(--bs-light-blue);
+  /* Chuyển sang màu xanh dương nhạt khi hover */
 }
 
 .active {
-  color: var(--bs-info); /* Màu khi active */
+  color: var(--bs-info);
+  /* Màu khi active */
 }
-
