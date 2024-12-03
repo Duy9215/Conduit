@@ -535,7 +535,7 @@ body {
 }
 
 .UnfavoriteButton {
-    background-color: var(--bs-orange);
+    background-color: var(--bs-primary);
     color: var(--bs-white);
 }
 
@@ -553,16 +553,16 @@ body {
     min-width: 250px;
     margin-left: 10px;
     padding: 6px 20px;
-    border: 1px solid var(--bs-orange);
+    border: 1px solid var(--bs-primary);
     border-radius: 5px;
     transition: 0.7s;
 
 }
 
 .RightCard header p:hover {
-    color: var(--bs-orange);
+    color: var(--bs-primary);
     cursor: pointer;
-    background-color: var(--bs-orange);
+    background-color: var(--bs-primary);
     color: var(--bs-white);
     border: none;
 }
