@@ -9,12 +9,15 @@ import {
   unfavoriteArticle,
   follow,
   unfollow,
+  deleteArticleBySlug,
+  newComments,
   getComments,
+  deleteComment,
 } from "../utils/Api";
 import Footer from "./Footer";
 import { BsFillSuitHeartFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { BiSolidMinusCircle, BiSolidPlusCircle } from "react-icons/bi";
 
 const BlogDetails = () => {
   const { slug } = useParams();
@@ -23,6 +26,7 @@ const BlogDetails = () => {
   const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState([]);
   const [currentSlug, setCurrentSlug] = useState(slug);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getArticlesDetails(currentSlug)
@@ -66,7 +70,6 @@ const BlogDetails = () => {
       console.error("Lỗi khi xử lý yêu thích bài viết:", error);
     }
   };
-
   const handleFollowClick = async () => {
     try {
       const isFollowing = blogDet?.article?.author?.following;
@@ -86,6 +89,65 @@ const BlogDetails = () => {
     }
   };
 
+  const handleDeleteClick = async () => {
+    try {
+      await deleteArticleBySlug(slug, user.token);
+      navigate("/");
+    } catch (error) {
+      console.error("Error deleting article:", error);
+    }
+  };
+
+  const handleUpdateArticle = () => {
+    navigate(`/articlesedit/${slug}`, {
+      state: {
+        title: blogDet?.article?.title,
+        description: blogDet?.article?.description,
+        body: blogDet?.article?.body,
+        tagList: blogDet?.article?.tagList,
+      },
+    });
+  };
+
+  console.log(user);
+
+  const handlePostComment = async () => {
+    try {
+      if (newComment.trim() === "") {
+        // Ngăn việc gửi bình luận trống
+        return;
+      }
+
+      const response = await newComments(currentSlug, newComment);
+      const newCommentData = {
+        id: response.comment.id,
+        createdAt: response.comment.createdAt,
+        body: response.comment.body,
+        authorUsername: user.username,
+        authorImage: user.image,
+      };
+
+      // Thêm bình luận mới vào danh sách comments
+      setComments((prevComments) => [...prevComments, newCommentData]);
+      setNewComment("");
+    } catch (error) {
+      console.error("Lỗi khi gửi bình luận:", error);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await deleteComment(currentSlug, commentId);
+      // Xoá bình luận khỏi danh sách hiện tại
+      const updatedComments = comments.filter(
+        (comment) => comment.id !== commentId
+      );
+      setComments(updatedComments);
+    } catch (error) {
+      console.error("Lỗi khi xoá bình luận:", error);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -97,10 +159,14 @@ const BlogDetails = () => {
             </div>
             <div className={styles.headerButtons}>
               <button onClick={handleFollowClick}>
-                <p>Update</p>
+                <button onClick={handleUpdateArticle}>
+                  <p>Update</p>
+                </button>
               </button>
               <button onClick={handleFavoriteClick}>
-                <p>Delete</p>
+                <button onClick={handleDeleteClick}>
+                  <p>Delete</p>
+                </button>
               </button>
             </div>
           </div>
@@ -112,7 +178,7 @@ const BlogDetails = () => {
             <div className={styles.blogContent}>
               <div className={styles.blogContentText}>
                 <p>
-                  <i>Date: {formatDate(blogDet?.article?.createdAt)}</i>
+                  <i>Update: {formatDate(blogDet?.article?.createdAt)}</i>
                 </p>
                 {blogDet?.article?.body}
               </div>
@@ -124,7 +190,7 @@ const BlogDetails = () => {
               </div>
             </div>
             <footer className={styles.commentFooter}>
-              Comments
+              Comment
               <div className={styles.commentBox}>
                 <div className={styles.comment}>
                   <div className={styles.commentText}>
@@ -136,17 +202,22 @@ const BlogDetails = () => {
                         <Form.Control
                           as="textarea"
                           rows={3}
-                          value={newComment}
-                          onChange={(e) => setNewComment(e.target.value)}
+                          value={newComment} // Bind the value to the state
+                          onChange={(e) => setNewComment(e.target.value)} // Update the state when input changes
                         />
                       </Form.Group>
                     </div>
                     <div className={styles.postComment}>
-                      <img src={user?.image} alt="" className={styles.avatar} />
+                      <img
+                        src={user?.image}
+                        alt="User Avatar"
+                        className={styles.avatar}
+                      />
                       <Button
                         className="float-end"
                         type="submit"
                         variant="outline-primary"
+                        onClick={handlePostComment} // Call the function to post comment when button is clicked
                       >
                         Post Comment
                       </Button>
@@ -172,10 +243,13 @@ const BlogDetails = () => {
                           className="mx-3"
                           style={{ fontSize: "15px", color: "#6c757d" }}
                         >
-                          {formatDate(comment?.createdAt)}
+                          {formatDate(comment.createdAt)}
                         </p>
                       </div>
-                      <button style={{ border: "none", background: "white" }}>
+                      <button
+                        onClick={() => handleDeleteComment(comment.id)}
+                        style={{ border: "none", background: "white" }}
+                      >
                         <RiDeleteBin6Line />
                       </button>
                     </div>
@@ -200,13 +274,7 @@ const BlogDetails = () => {
                     : styles.favoriteButton
                 }
               >
-                <span>
-                  {blogDet?.article?.author?.following ? (
-                    <BiSolidMinusCircle />
-                  ) : (
-                    <BiSolidPlusCircle />
-                  )}{" "}
-                </span>
+                <span>{blogDet?.article?.author?.following ? "+ " : "- "}</span>
                 <p>
                   {blogDet?.article?.author?.following
                     ? "UnFollow "
@@ -238,7 +306,7 @@ const BlogDetails = () => {
             <div className={styles.blogContent}>
               <div className={styles.blogContentText}>
                 <p>
-                  <i>Date: {formatDate(blogDet?.article?.createdAt)}</i>
+                  <i>Update: {formatDate(blogDet?.article?.createdAt)}</i>
                 </p>
                 {blogDet?.article?.body}
               </div>
@@ -269,11 +337,16 @@ const BlogDetails = () => {
                       </Form.Group>
                     </div>
                     <div>
-                      <img src={user.image} alt="" className={styles.avatar} />
+                      <img
+                        src={user.image}
+                        alt="User Avatar"
+                        className={styles.avatar}
+                      />
                       <Button
                         className="float-end"
                         type="submit"
                         variant="outline-primary"
+                        onClick={handlePostComment}
                       >
                         Post Comment
                       </Button>
@@ -301,7 +374,10 @@ const BlogDetails = () => {
                         {comment.createdAt}
                       </p>
                     </div>
-                    <button style={{ border: "none", background: "white" }}>
+                    <button
+                      onClick={() => handleDeleteComment(comment.id)}
+                      style={{ border: "none", background: "white" }}
+                    >
                       <RiDeleteBin6Line />
                     </button>
                   </div>
