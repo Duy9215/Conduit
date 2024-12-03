@@ -1,0 +1,213 @@
+/* Blog.module.css */
+
+/* Đặt màu nền và màu sắc chủ đạo */
+:root {
+  --primary-bg-color: #f0f8ff;
+  /* Nền sáng - màu xanh nhạt */
+  --secondary-bg-color: #ffffff;
+  /* Nền trắng cho các phần tử */
+  --highlight-color: #3498db;
+  /* Màu xanh dương sáng */
+  --primary-text-color: #2c3e50;
+  /* Màu chữ tối */
+  --secondary-text-color: #95a5a6;
+  /* Màu chữ nhạt */
+  --button-color: #3498db;
+  /* Màu nút xanh dương */
+  --button-hover-color: #2980b9;
+  /* Màu nút hover xanh dương đậm */
+}
+
+/* Nền chính của trang */
+.BoxBlog {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial', sans-serif;
+  padding: 30px;
+}
+
+/* Tiêu đề trang */
+.HeaderInfor h1 {
+  font-size: 2.5rem;
+  color: var(--highlight-color);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.HeaderInfor p {
+  color: var(--secondary-text-color);
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* Bố cục chính của bài viết */
+.BoxContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* Bài viết chính */
+.RightContent {
+  width: 70%;
+  overflow-y: auto;
+  padding-right: 20px;
+}
+
+.ItemBlog {
+  background-color: var(--secondary-bg-color);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ItemBlog:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Phần header của mỗi bài viết */
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.nameUser {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nameUser img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Phần yêu thích bài viết */
+.favoriteButton {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--secondary-text-color);
+  /* Màu xanh dương cho icon yêu thích */
+  transition: color 0.2s;
+}
+
+.UnfavoriteButton {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--highlight-color);
+  /* Màu xanh dương cho icon yêu thích */
+  transition: color 0.2s;
+}
+
+.favoriteButton:hover,
+.UnfavoriteButton:hover {
+  color: var(--button-hover-color);
+  /* Màu khi hover */
+}
+
+/* Footer bài viết (tags và ngày tháng) */
+.FooterIteam {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+
+/* Thanh phân trang */
+.Pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.Page {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--secondary-bg-color);
+  color: var(--primary-text-color);
+}
+
+.ActivePage {
+  background-color: var(--highlight-color);
+  /* Màu xanh dương cho trang hiện tại */
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.Page:hover {
+  background-color: var(--button-hover-color);
+  /* Khi hover thì màu chuyển sang xanh dương đậm */
+}
+
+/* Sidebar trái */
+.LeftContent {
+  width: 25%;
+  background-color: var(--secondary-bg-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 1040px;
+}
+
+/* Quảng cáo */
+.ads img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* Các thanh menu như Tags */
+.NameTopicTags {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-text-color);
+}
+
+.Tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  max-height: 900px; /* Giới hạn chiều cao */
+  overflow-y: auto; /* Thêm thanh cuộn dọc */
+  padding-right: 5px; /* Giữ khoảng trống để tránh che bởi thanh cuộn */
+}
+
+.Tags span {
+  background-color: var(--highlight-color);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.Tags span:hover {
+  background-color: #2980b9;
+}
+
+.DisabledFavoriteButton {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--secondary-text-color);
+  /* Màu xanh dương cho icon yêu thích */
+  transition: color 0.2s;
+}
+
+.DisabledFavoriteButton:hover {
+  color: var(--button-hover-color);
+}
