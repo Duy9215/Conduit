@@ -130,5 +130,6 @@
 
 .Active {
   font-weight: bold;
-  color: #007bff; /* Hoặc bất kỳ màu nào bạn muốn */
+  color: #007bff;
+  /* Hoặc bất kỳ màu nào bạn muốn */
 }
