@@ -125,9 +125,9 @@ const Blog = () => {
             const article = updatedArticles[articleIndex];
 
             if (article.favorited) {
-                await unfavoriteArticle(slug);
+                await unfavoriteArticle(slug, user.token);
             } else {
-                await favoriteArticle(slug);
+                await favoriteArticle(slug, user.token);
             }
 
             article.favorited = !article.favorited;

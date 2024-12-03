@@ -28,24 +28,33 @@ const BlogDetails = () => {
     const [currentSlug, setCurrentSlug] = useState(slug);
     const navigate = useNavigate();
 
+    // Điều kiện kiểm tra đăng nhập
     useEffect(() => {
-        getArticlesDetails(currentSlug)
-            .then((blogDet) => {
-                setBlogDet(blogDet);
-            })
-            .catch((error) => {
-                console.error("Lỗi dữ liệu:", error);
-            });
+        if (!user || !user.token) {
+            navigate("/login"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+        }
+    }, [user, navigate]);
 
-        getComments(currentSlug)
-            .then((fetchedComments) => {
-                console.log("Dữ liệu bình luận từ API:", fetchedComments);
-                setComments(fetchedComments);
-            })
-            .catch((error) => {
-                console.error("Lỗi khi lấy bình luận:", error.response.data);
-            });
-    }, [currentSlug]);
+    useEffect(() => {
+        if (user && user.token) {
+            getArticlesDetails(currentSlug)
+                .then((blogDet) => {
+                    setBlogDet(blogDet);
+                })
+                .catch((error) => {
+                    console.error("Lỗi dữ liệu:", error);
+                });
+
+            getComments(currentSlug)
+                .then((fetchedComments) => {
+                    console.log("Dữ liệu bình luận từ API:", fetchedComments);
+                    setComments(fetchedComments);
+                })
+                .catch((error) => {
+                    console.error("Lỗi khi lấy bình luận:", error.response.data);
+                });
+        }
+    }, [currentSlug, user]);
 
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric" };
