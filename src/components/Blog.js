@@ -11,6 +11,7 @@ export const ArticlesContext = createContext({ articles: [], setArticles: () => 
 
 const Blog = () => {
     const [articles, setArticles] = useState([]);
+    const [allArticles, setAllArticles] = useState([]);
     const [hotTags, setHotTags] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const user = JSON.parse(localStorage.getItem(`user-info`)) || {}
@@ -18,13 +19,18 @@ const Blog = () => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const articleData = await getArticles(user.token);
-                setArticles(articleData.articles);
-                console.log(articleData);
+                // Kiểm tra nếu có user.token thì gọi API với token của người dùng
+                const articleData = user.token
+                    ? await getArticles(user.token)
+                    : await getArticles(); // Gọi API bài viết công khai nếu chưa đăng nhập
+
+                setArticles(articleData.articles);  // Cập nhật bài viết
+                setAllArticles(articleData.articles); // Lưu lại bài viết gốc
             } catch (error) {
-                console.error('Lỗi khi truy xuất bài viết:', error);
+                console.error("Lỗi khi truy xuất bài viết:", error);
             }
         };
+        fetchArticles();
 
         const fetchTags = async () => {
             try {
@@ -51,27 +57,62 @@ const Blog = () => {
     const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
 
     const renderPagination = () => {
-        const pageNumbers = Math.ceil(articles.length / ITEMS_PER_PAGE);
+        const totalPages = Math.ceil(articles.length / ITEMS_PER_PAGE);
+        const pageNeighbours = 2;
+        const startPage = Math.max(1, currentPage - pageNeighbours);
+        const endPage = Math.min(totalPages, currentPage + pageNeighbours);
+
+        const handlePageChange = (page) => {
+            setCurrentPage(page);
+        };
 
         return (
             <div className={styled.Pagination}>
-                {Array.from({ length: pageNumbers }, (_, index) => (
+                {currentPage > 1 && (
+                    <>
+                        <span onClick={() => handlePageChange(1)} className={styled.Page}>
+                            Đầu
+                        </span>
+                        <span onClick={() => handlePageChange(currentPage - 1)} className={styled.Page}>
+                            &laquo;
+                        </span>
+                    </>
+                )}
+                {Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index).map((page) => (
                     <span
-                        key={index}
-                        className={currentPage === index + 1 ? styled.ActivePage : styled.Page}
-                        onClick={() => setCurrentPage(index + 1)}
+                        key={page}
+                        className={currentPage === page ? styled.ActivePage : styled.Page}
+                        onClick={() => handlePageChange(page)}
                     >
-                        {index + 1}
+                        {page}
                     </span>
                 ))}
+                {currentPage < totalPages && (
+                    <>
+                        <span onClick={() => handlePageChange(currentPage + 1)} className={styled.Page}>
+                            &raquo;
+                        </span>
+                        <span onClick={() => handlePageChange(totalPages)} className={styled.Page}>
+                            Cuối
+                        </span>
+                    </>
+                )}
             </div>
         );
     };
 
     const findHotTags = (tag) => {
-        console.log(tag);
+        // Lọc các bài viết theo tag
+        const filteredArticles = allArticles.filter(article =>
+            article.tagList.includes(tag)
+        );
+        setArticles(filteredArticles);
+    };
 
-    }
+    // Quay lại tất cả bài viết nếu người dùng không muốn lọc theo tag nữa
+    const resetArticles = () => {
+        setArticles(allArticles);
+    };
     const navigate = useNavigate();
     const handleToDetails = (slug) => {
         navigate("/articles/" + slug);
@@ -180,8 +221,7 @@ const Blog = () => {
                             ))}
                         </div>
                         <div className={styled.ads}>
-                            <img src='https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&quality=85&auto=format&fit=max&s=a52bbe202f57ac0f5ff7f47166906403' alt="Ad 1" />
-                            <img src='https://i0.wp.com/suddenlycat.com/wp-content/uploads/2020/09/Screenshot-2020-08-30-at-2.41.56-AM.png?resize=814%2C1024&ssl=1' alt="Ad 2" />
+
                         </div>
                     </div>
                 </div>

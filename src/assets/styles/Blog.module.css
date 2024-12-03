@@ -124,25 +124,6 @@
   font-size: 0.9rem;
 }
 
-.Tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.Tags span {
-  background-color: var(--highlight-color);
-  /* Màu xanh dương cho các tag */
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-.Tags span:hover {
-  background-color: #2980b9;
-  /* Màu xanh dương đậm hơn khi hover */
-}
 
 /* Thanh phân trang */
 .Pagination {
@@ -180,6 +161,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 1040px;
 }
 
 /* Quảng cáo */
@@ -196,13 +178,25 @@
   color: var(--primary-text-color);
 }
 
+.Tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  max-height: 900px;
+  /* Giới hạn chiều cao */
+  overflow-y: auto;
+  /* Thêm thanh cuộn dọc */
+  padding-right: 5px;
+  /* Giữ khoảng trống để tránh che bởi thanh cuộn */
+}
+
 .Tags span {
   background-color: var(--highlight-color);
   color: white;
   padding: 8px 15px;
-  border-radius: 5px;
-  margin-right: 10px;
+  border-radius: 50px;
   cursor: pointer;
+  font-size: 10px;
 }
 
 .Tags span:hover {

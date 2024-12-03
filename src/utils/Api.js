@@ -96,6 +96,10 @@ export async function updateUserImage(updatedUserData) {
 
 export async function getArticles(token) {
     try {
+        const limit = 350;
+
+        const offset = 0;
+
         const headers = {
             "Content-Type": "application/json",
             Accept: "application/json",
@@ -105,11 +109,43 @@ export async function getArticles(token) {
             headers.Authorization = `Bearer ${token}`;
         }
 
-        const response = await axios.get('https://node-express-conduit.appspot.com/api/articles', {
+        const response = await axios.get(`https://node-express-conduit.appspot.com/api/articles?limit=${limit}&offset=${offset}`, {
             headers: headers,
+
         });
         return response.data;
     } catch (error) {
+        throw error;
+    }
+}
+
+export async function getYourFeed() {
+    const user = JSON.parse(localStorage.getItem('user-info')) || {};
+    const token = user.token;
+    const limit = 350;
+
+    const offset = 0;
+
+    if (!token) {
+        console.error('Token is missing.');
+        throw new Error('Token not available');
+    }
+
+    const headers = {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+    };
+
+    try {
+        const response = await axios.get(
+            `https://node-express-conduit.appspot.com/api/articles/feed?limit=${limit}&offset=${offset}`,
+            { headers }
+        );
+        console.log('Your feed data:', response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching feed:', error);
         throw error;
     }
 }
