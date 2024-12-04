@@ -84,7 +84,7 @@ const Navbar = ({ isProfile = false }) => {
                                         <Dropdown.Item eventKey="1" className="DropdownMenu">
                                             <AiOutlineEdit className="mx-2 mb-1" />
                                             <Link
-                                                to="/edit"
+                                                to="/add"
                                                 style={{ textDecoration: "none", color: "black" }}
                                             >
                                                 New Article
