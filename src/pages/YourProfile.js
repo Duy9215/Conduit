@@ -236,7 +236,7 @@ const YourProfile = () => {
                            currentUserPosts.map(article => (
                               <div key={article.slug} className={styled.ItemContent} onClick={() => handleToDetails(article.slug)}>
                                  <div className={styled.ContentImg}>
-                                    <img src="https://wallpapers.com/images/hd/blue-aesthetic-moon-df8850p673zj275y.jpg" alt="Mô tả hình ảnh" />
+
                                  </div>
                                  <div className={styled.ContentInfor}>
                                     <p style={{ color: '#3498db' }}><img src={article.author?.image} className={styled.imageAuthor} alt="" />{article.author.username}</p>
@@ -250,7 +250,7 @@ const YourProfile = () => {
                            currentFavoritePosts.map(article => (
                               <div key={article.slug} className={styled.ItemContent} onClick={() => handleToDetails(article.slug)}>
                                  <div className={styled.ContentImg}>
-                                    <img src="https://wallpapers.com/images/hd/blue-aesthetic-moon-df8850p673zj275y.jpg" alt="Mô tả hình ảnh" />
+
                                  </div>
                                  <div className={styled.ContentInfor}>
                                     <p style={{ color: '#3498db' }}><img src={article.author?.image} className={styled.imageAuthor} alt="" />{article.author.username}</p>

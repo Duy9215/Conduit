@@ -36,7 +36,7 @@ const Login = () => {
         } catch (error) {
             console.error("Lỗi đăng nhập:", error);
             setLoginError(true);
-            toast.error('Đăng nhập thất bại rồi bro!', {
+            toast.error('Đăng nhập thất bại!', {
                 position: 'top-right',
                 autoClose: 2000,
                 hideProgressBar: false,

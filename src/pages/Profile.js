@@ -123,7 +123,7 @@ const Profile = () => {
                            .map((article) => (
                               <div key={article.slug} className={styled.ItemContent} onClick={() => handleToDetails(article.slug)}>
                                  <div className={styled.ContentImg}>
-                                    <img src="https://cdn-media.sforum.vn/storage/app/media/ctvseocps123/hinh-nen-8d-thumbnail.jpg" alt="Mô tả hình ảnh" />
+                                    <img src="https://wallpapers.com/images/hd/blue-aesthetic-moon-df8850p673zj275y.jpg" alt="Mô tả hình ảnh" />
                                  </div>
                                  <div className={styled.ContentInfor} >
                                     <h4>{article.title}</h4>

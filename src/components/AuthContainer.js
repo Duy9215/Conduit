@@ -7,6 +7,7 @@ import AddAriticles from '../pages/AddArticles'
 import BlogDetails from './BlogDetails';
 import Profile from '../pages/Profile';
 import YourProfile from '../pages/YourProfile';
+import EditAritcle from '../pages/EditAritcle';
 
 const AuthContainer = () => {
     return (
@@ -20,6 +21,7 @@ const AuthContainer = () => {
                 <Route path="/profiles/:username" element={<Profile />} />
                 <Route path="/articles/:slug" element={<BlogDetails />} />
                 <Route path="/yourprofile" element={< YourProfile />} />
+                <Route path="/articlesedit/:slug" element={<EditAritcle />} />
             </Routes>
         </Router>
     );

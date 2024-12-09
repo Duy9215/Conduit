@@ -157,6 +157,7 @@ const Blog = () => {
                             <div key={article.slug} className={styled.ItemBlog}>
                                 <header className={styled.Header}>
                                     <div onClick={() => handleProfile(article.author.username)} className={styled.nameUser}>
+                                        <img src={article.author.image} className={styled.imageAuthor} alt="" />
                                         <span> {article.author.username}</span>
                                     </div>
                                     <div>
