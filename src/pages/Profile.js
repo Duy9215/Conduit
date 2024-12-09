@@ -13,6 +13,8 @@ const Profile = () => {
    const { username } = useParams();
    const [articles, setArticles] = useState([]);
    const navigate = useNavigate();
+   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
+   const articlesPerPage = 3; // Số bài viết trên mỗi trang
 
    useEffect(() => {
       const fetchUserProfile = async () => {
@@ -75,7 +77,18 @@ const Profile = () => {
          console.error('Error following/unfollowing:', error);
       }
    };
-   console.log(userProfile);
+
+   const indexOfLastArticle = currentPage * articlesPerPage;
+   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+   const currentArticles = articles
+      .filter(article => article.author.username === userProfile?.username)
+      .slice(indexOfFirstArticle, indexOfLastArticle);
+
+   const totalPages = Math.ceil(
+      articles.filter(article => article.author.username === userProfile?.username).length / articlesPerPage
+   );
+
+   const changePage = (pageNumber) => setCurrentPage(pageNumber);
 
    return (
       <div className={styled.BoxUser}>
@@ -118,20 +131,46 @@ const Profile = () => {
                      </header>
 
                      <div className={styled.ListContent}>
-                        {articles
-                           .filter(article => article.author.username === userProfile?.username)
-                           .map((article) => (
-                              <div key={article.slug} className={styled.ItemContent} onClick={() => handleToDetails(article.slug)}>
-                                 <div className={styled.ContentImg}>
-                                    <img src="https://wallpapers.com/images/hd/blue-aesthetic-moon-df8850p673zj275y.jpg" alt="Mô tả hình ảnh" />
-                                 </div>
-                                 <div className={styled.ContentInfor} >
-                                    <h4>{article.title}</h4>
-                                    <p>{article.description}</p>
-                                 </div>
+                        {currentArticles.map((article) => (
+                           <div key={article.slug} className={styled.ItemContent} onClick={() => handleToDetails(article.slug)}>
+                              <div className={styled.ContentImg}>
                               </div>
-                           ))}
+                              <div className={styled.ContentInfor} >
+                                 <p style={{ color: '#3498db' }}><img src={article.author?.image} className={styled.imageAuthor} alt="" />{article.author.username}</p>
+                                 <h4>{article.title}</h4>
+                                 <p>{article.description}</p>
+                              </div>
+                           </div>
+                        ))}
                      </div>
+
+                     <div className={styled.Pagination}>
+                        {/* Nút quay lại */}
+                        {currentPage > 1 && (
+                           <button
+                              onClick={() => changePage(currentPage - 1)}
+                              className={styled.Page}
+                           >
+                              &lt;
+                           </button>
+                        )}
+
+                        {/* Trang hiện tại */}
+                        <button className={`${styled.Page} ${styled.ActivePage}`}>
+                           {currentPage}
+                        </button>
+
+                        {/* Nút chuyển tiếp */}
+                        {currentPage < totalPages && (
+                           <button
+                              onClick={() => changePage(currentPage + 1)}
+                              className={styled.Page}
+                           >
+                              &gt;
+                           </button>
+                        )}
+                     </div>
+
                   </div>
                </div>
             </div>
