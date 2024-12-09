@@ -72,25 +72,26 @@ export async function getUser() {
 }
 
 // Update user's image
-export async function updateUserImage(updatedUserData) {
-    const user = JSON.parse(localStorage.getItem(`user-info`)) || {};
+export async function updateUserProfile(updatedUserData) {
+    const user = JSON.parse(localStorage.getItem('user-info')) || {};
     try {
-        const response = await axios.put(`https://node-express-conduit.appspot.com/api/users`, updatedUserData, {
+        // Gửi yêu cầu PUT để cập nhật profile người dùng
+        const response = await axios.put('https://node-express-conduit.appspot.com/api/user', updatedUserData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Cache-Control': 'no-cache',
-                Authorization: `Bearer ${user.token}`
+                Authorization: `Bearer ${user.token}`,
             },
         });
+
         console.log(response);
         return response.data;
     } catch (error) {
-        console.error('Error updating user image:', error);
+        console.error('Error updating user profile:', error);
         console.error('Error:', error.response);
         throw error;
     }
 }
-
 // Articles
 
 
@@ -233,7 +234,38 @@ export async function getTags() {
 }
 
 //Favorites
+export async function getFavoriteArticles() {
+    const user = JSON.parse(localStorage.getItem('user-info')) || {};
+    const token = user.token;
+    const limit = 350;
+    const offset = 0;
 
+    if (!token) {
+        console.error('Token is missing.');
+        throw new Error('Token not available');
+    }
+
+    const headers = {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+    };
+
+    try {
+        // Sử dụng URL bạn cung cấp với tham số 'favorited' là username của người dùng
+        const response = await axios.get(
+            `https://node-express-conduit.appspot.com/api/articles?favorited=${user.username}&limit=${limit}&offset=${offset}`,
+            { headers }
+        );
+
+        // Lọc các bài viết đã được yêu thích
+        const favoriteArticles = response.data.articles.filter(article => article.favorited);
+        return favoriteArticles;
+    } catch (error) {
+        console.error('Error fetching favorite articles:', error);
+        throw error;
+    }
+}
 
 export async function favoriteArticle(slug) {
     try {
@@ -322,14 +354,14 @@ export async function unfollow(username, token) {
 
 export async function getProfile(username) {
     try {
-        const response = await axios.get(`https://node-express-conduit.appspot.com/api/profiles/${username}`,
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: 'application/json',
-                    Authorization: `Bearer ${user.token}`
-                },
-            });
+        const response = await axios.get(`https://node-express-conduit.appspot.com/api/profiles/${username}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Accept: 'application/json',
+                Authorization: `Bearer ${user.token}`,
+            },
+        });
+        console.log(response.data); // Kiểm tra dữ liệu trả về
         return response.data;
     } catch (error) {
         console.error('Error fetching user profile:', error);

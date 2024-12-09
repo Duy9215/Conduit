@@ -164,7 +164,7 @@ const BlogDetails = () => {
                 <div className={styles.container}>
                     <div className={styles.infoArea}>
                         <div className={styles.headerInfo}>
-                            <p>{blogDet?.article?.author?.username}</p>
+                            <h2 style={{ color: '#3498db' }}>{blogDet?.article?.author?.username}</h2>
                         </div>
                         <div className={styles.headerButtons}>
                             <button onClick={handleFollowClick}>
@@ -211,8 +211,8 @@ const BlogDetails = () => {
                                                 <Form.Control
                                                     as="textarea"
                                                     rows={3}
-                                                    value={newComment} // Bind the value to the state
-                                                    onChange={(e) => setNewComment(e.target.value)} // Update the state when input changes
+                                                    value={newComment}
+                                                    onChange={(e) => setNewComment(e.target.value)}
                                                 />
                                             </Form.Group>
                                         </div>
@@ -226,7 +226,7 @@ const BlogDetails = () => {
                                                 className="float-end"
                                                 type="submit"
                                                 variant="outline-primary"
-                                                onClick={handlePostComment} // Call the function to post comment when button is clicked
+                                                onClick={handlePostComment}
                                             >
                                                 Post Comment
                                             </Button>
@@ -272,7 +272,7 @@ const BlogDetails = () => {
                 <div className={styles.container}>
                     <div className={styles.infoArea}>
                         <div className={styles.headerInfo}>
-                            <p>{blogDet?.article?.author?.username}</p>
+                            <h2 style={{ color: '#3498db' }}>{blogDet?.article?.author?.username}</h2>
                         </div>
                         <div className={styles.headerButtons}>
                             <button

@@ -168,7 +168,7 @@ const Blog = () => {
                                 </header>
                                 <div className={styled.ContentIteam} onClick={() => handleToDetails(article.slug)}>
                                     <h2>{article.title}</h2>
-                                    <figcaption>{article.description}</figcaption>
+                                    <figcaption style={{ color: 'gray' }}>{article.description}</figcaption>
                                 </div>
                                 <footer className={styled.FooterIteam}>
                                     <div>
